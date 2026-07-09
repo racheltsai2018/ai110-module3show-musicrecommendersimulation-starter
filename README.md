@@ -27,7 +27,13 @@ Some prompts to answer:
 - How does your `Recommender` compute a score for each song
 - How do you choose which songs to recommend
 
-You can include a simple diagram or bullet list if helpful.
+The real-world recommendation utilizes collaborative filter and content-based filtering to make recommendations for the users. The collaborative filtering will reference other users with similar preferences to make recommendations for the songs. The content-based filtering make recomendations on the different features. The features each 'song' use in my system includes genre, mood, and energy. Since 'Song' uses genre, mood, energy, it is important to store the favorite genre, favorite mood, and energy level in 'UserProfile'. The 'Recommender' compute a score for each song by adding +2 points if the Genre Match the user's favorite genre, +1 if it matches the user's favorite mood, and + up to 1 point the closer the energy matches. To choose which songs to recommend, after computing a score for each song, the songs are sorted, the top songs are then recommended first.
+
+### Algorithm Recipe
+Each song will start with a score of 0, if the genre matches the score will increase by 2, and if the mood matches, the score will increase by 1. The closer the value of the energy the higher the score, with the most increasing the score by 1 point. 
+
+The system will prioritize genre over mood and energy since a matching genre will give +2 points. As a result, other songs that match the user's mood or energy may be ignored. 
+
 
 ---
 
@@ -70,13 +76,44 @@ You can add more tests in `tests/test_recommender.py`.
 
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
-```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+```text
+Loaded songs: 18
+
+====================================================
+  TOP RECOMMENDATIONS FOR YOU
+  genre=pop  mood=happy  energy=0.8
+====================================================
+
+  1. Sunrise City - Neon Echo
+     Score: 3.98
+     Reasons:
+       - genre match (pop) (+2.0)
+       - mood match (happy) (+1.0)
+       - energy closeness (song 0.82 vs target 0.80) (+0.98)
+
+  2. Gym Hero - Max Pulse
+     Score: 2.87
+     Reasons:
+       - genre match (pop) (+2.0)
+       - energy closeness (song 0.93 vs target 0.80) (+0.87)
+
+  3. Rooftop Lights - Indigo Parade
+     Score: 1.96
+     Reasons:
+       - mood match (happy) (+1.0)
+       - energy closeness (song 0.76 vs target 0.80) (+0.96)
+
+  4. Concrete Prophet - Iron Verse
+     Score: 1.00
+     Reasons:
+       - energy closeness (song 0.80 vs target 0.80) (+1.00)
+
+  5. Night Drive Loop - Neon Echo
+     Score: 0.95
+     Reasons:
+       - energy closeness (song 0.75 vs target 0.80) (+0.95)
+
+====================================================
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
