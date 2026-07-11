@@ -3,7 +3,7 @@
 ## 1. Model Name  
 
 Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+Example: **Favorite song finder 1.0**  
 
 ---
 
@@ -15,97 +15,55 @@ Prompts:
 
 - What kind of recommendations does it generate  
 - What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
+- Is this for real users or classroom exploration 
+
+The recommender makes song recommendations based on the user's favorite genre, mood, and energy levels. The recommender currently makes the assumption that each user only have one favorite genre and mood. Currently, the recommender is more suitable for classroom exploration since the tool is not complete enough for it, and the dataset is too small for the recommender to be used by real users. 
 
 ---
 
 ## 3. How the Model Works  
 
-Explain your scoring approach in simple language.  
-
-Prompts:  
-
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
-
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+There are 3 features that are used for each song: genre, mood, and energy. If the song matches the user's favorite genre, the system will add 1 point to the score. If the song's mood matches the user's favorite mood, another 1 point will be added. Energy is calculated with the formula 2x(1- difference in energy), so the max amount that can be gained is +2 points if the energy matches perfectly.
 
 ---
 
 ## 4. Data  
 
-Describe the dataset the model uses.  
-
-Prompts:  
-
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
+The catalog currently contains a total of 18 songs. There are a total of 16 different genres in the dataset including pop, lofi, rock, ambient, jazz, synthwave, indie pop, hip hop, world soul, techno, country, classical, reggae, drum and bass. There are a total of 14 different moods including happy, chill, intense, focused, confident, mystical, melancholy, euphoric, nostalgic, somber, carefree, aggressive, moody, and relaxed. The dataset started with a total of 10 songs, and 8 songs were added. 
 
 ---
 
 ## 5. Strengths  
 
-Where does your system seem to work well  
-
-Prompts:  
-
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
+The system works well by making song recommendations that matches the user's preferences based on the available songs in the dataset. When there there are not songs that matches the user's favorite genre or mood, the system still makes recommendations based on matching energy levels. As a results, the system is still able to make song recommendations the users may be interested in. 
 
 ---
 
 ## 6. Limitations and Bias 
 
-Where the system struggles or behaves unfairly. 
-
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+After the changes for weight shift was made in step 3, the is a bias toward energy since each song can gain a total of 2 points in the energy field. The genre and moods can only gain a total of 1 points each, therefore, genres and moods are underrepresented compared to energy. If the system want to remove this bias, the energy category can be change to gain a maximum of 1 point. 
 
 ---
 
 ## 7. Evaluation  
 
-How you checked whether the recommender behaved as expected. 
+Some user profiles that was tested included:
+User profile 1: Favorite genre: pop, mood: happy, and energy: 0.8
+User profile 2: Favorite genre: soul, mood: melancholy, energy: 0.95
+User profile 3: Favorite genre: pop mood: happy, and energy:2.0
 
-Prompts:  
+Something that surprised me when testing with profile 3 was that recommended songs 4&5 gained negative points. However, analyzing the results, I realized it was because there was no more matches for genre and mood, so the points came from energy category. 
 
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
+For User profile 1, the order of recommended song for Rootop Lights - Indigo Parade and Gym Hero - Max Pulse was swapped after making the changes in step 3. For User profile 2 and 3, the order of the recommended songs stayed the same and only the score for each song changed slightly, which is resonable considering the importance of energy was doubled and importance of genre was halved.
 
 ---
 
 ## 8. Future Work  
 
-Ideas for how you would improve the model next.  
-
-Prompts:  
-
-- Additional features or preferences  
-- Better ways to explain recommendations  
-- Improving diversity among the top results  
-- Handling more complex user tastes  
+The model can be improved by making sure when the system is making recommendations, it will take into account all the available features. In the dataset, features like acousticness, danceability, valence, and tempo are all included. These feature could be used so the recommendations made could match the user's preferences more perfectly. In order to improve the system, it would also be better to add more songs to the dataset. 
 
 ---
 
 ## 9. Personal Reflection  
 
-A few sentences about your experience.  
-
-Prompts:  
-
-- What you learned about recommender systems  
-- Something unexpected or interesting you discovered  
-- How this changed the way you think about music recommendation apps  
+From this project, it gave me a basic insight on how song recommendation system works. I learned about collaborative filtering and content-based filtering, which are both concepts I have never heard of before starting this project. Using AI tools helped me speed up the programming process, however since AI tools still makes mistakes, I still double-check the code whenever AI tools make changes to the files. Something I would try next aside from the changes made in the future work section if this project was extended was adding the ability to have multiple favorite genre or mood, or allow the users to save/change their favorite genre or mood depending how they are feeling right now. An example would be I'm feeling happy so my favorite song genre would be pop and mood would be happy. However, when I am feeling sad, my favorite genre would be soul and mood would be sad or chill. 
