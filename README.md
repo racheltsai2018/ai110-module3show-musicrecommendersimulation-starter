@@ -98,6 +98,7 @@ Loaded songs: 18
 ```
 
 After performing the changes in step 3:
+```text
 ====================================================
   TOP RECOMMENDATIONS FOR YOU
   genre=pop  mood=happy  energy=0.8
@@ -133,10 +134,12 @@ After performing the changes in step 3:
        - energy closeness (song 0.75 vs target 0.80) (+1.90)
 
 ====================================================
+```
 
 ### Phase 4 step 1
 
 Profile 1 (favorite genre: soul, mood: melancholy, energy: 0.95)
+```text
 ====================================================
   TOP RECOMMENDATIONS FOR YOU
   genre=soul  mood=melancholy  energy=0.95
@@ -170,8 +173,10 @@ Profile 1 (favorite genre: soul, mood: melancholy, energy: 0.95)
        - energy closeness (song 0.88 vs target 0.95) (+0.93)
 
 ====================================================
+```
 
 After performing changes in step 3:
+```text
 ====================================================
   TOP RECOMMENDATIONS FOR YOU
   genre=soul  mood=melancholy  energy=0.95
@@ -205,9 +210,10 @@ After performing changes in step 3:
        - energy closeness (song 0.88 vs target 0.95) (+1.86)
 
 ====================================================
+```
 
 Profile 2 (favorite genre: pop, mood: happy, energy: 2.0)
-
+```text
 ====================================================
   TOP RECOMMENDATIONS FOR YOU
   genre=pop  mood=happy  energy=2.0
@@ -243,9 +249,10 @@ Profile 2 (favorite genre: pop, mood: happy, energy: 2.0)
        - energy closeness (song 0.91 vs target 2.00) (+-0.09)
 
 ====================================================
-
+```
 
 Results for Profile 2 after performing change in step 3:
+```text
 ====================================================
   TOP RECOMMENDATIONS FOR YOU
   genre=pop  mood=happy  energy=2.0
@@ -281,9 +288,7 @@ Results for Profile 2 after performing change in step 3:
        - energy closeness (song 0.91 vs target 2.00) (+-0.18)
 
 ====================================================
-
-
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
+```
 
 ---
 
