@@ -1,21 +1,11 @@
 # 🎧 Model Card: Music Recommender Simulation
 
 ## 1. Model Name  
-
-Give your model a short, descriptive name.  
-Example: **Favorite song finder 1.0**  
+**Favorite song finder 1.0**  
 
 ---
 
 ## 2. Intended Use  
-
-Describe what your recommender is designed to do and who it is for. 
-
-Prompts:  
-
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration 
 
 The recommender makes song recommendations based on the user's favorite genre, mood, and energy levels. The recommender currently makes the assumption that each user only have one favorite genre and mood. Currently, the recommender is more suitable for classroom exploration since the tool is not complete enough for it, and the dataset is too small for the recommender to be used by real users. 
 

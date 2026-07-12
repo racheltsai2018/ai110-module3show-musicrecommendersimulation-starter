@@ -11,6 +11,8 @@ You will implement the functions in recommender.py:
 
 import argparse
 
+from tabulate import tabulate
+
 try:
     # Works when run as a module: python -m src.main
     from .recommender import load_songs, recommend_songs
@@ -54,19 +56,24 @@ def main() -> None:
     summary = "  ".join(f"{key}={value}" for key, value in user_prefs.items())
 
     print()
-    print("=" * 52)
-    print("  TOP RECOMMENDATIONS FOR YOU")
-    print(f"  {summary}")
-    print("=" * 52)
+    print("TOP RECOMMENDATIONS FOR YOU")
+    print(summary)
+    print()
+    print(format_recommendations(recommendations))
 
+
+def format_recommendations(recommendations) -> str:
+    """Render the recommendations as a grid table, including the reasons per score.
+
+    The grid format keeps the multi-line reasons column readable.
+    """
+    headers = ["#", "Title", "Artist", "Score", "Reasons"]
+    rows = []
     for rank, (song, score, explanation) in enumerate(recommendations, start=1):
-        print(f"\n  {rank}. {song['title']} - {song['artist']}")
-        print(f"     Score: {score:.2f}")
-        print("     Reasons:")
-        for reason in explanation.split("; "):
-            print(f"       - {reason}")
+        reasons = "\n".join(f"- {reason}" for reason in explanation.split("; "))
+        rows.append([rank, song["title"], song["artist"], f"{score:.2f}", reasons])
 
-    print("\n" + "=" * 52)
+    return tabulate(rows, headers=headers, tablefmt="grid")
 
 
 if __name__ == "__main__":
